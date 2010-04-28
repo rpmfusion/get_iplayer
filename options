@@ -1,0 +1,2 @@
+flvstreamer /usr/bin/rtmpdump
+rtmptvopts --swfVfy http://www.bbc.co.uk/emp/10player.swf
