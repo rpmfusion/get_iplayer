@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.77
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -10,7 +10,7 @@ Source0:	ftp://ftp.infradead.org/pub/get_iplayer/get_iplayer-%{version}.tar.gz
 Source1:	options
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	sed
+BuildRequires:	sed perl(HTML::Entities)
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc
 
 BuildArch:	noarch
@@ -45,6 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Wed May 26 2010 David Woodhouse <dwmw2@infradead.org> 2.77-2
+- BR perl(HTML::Entities) for man page
+
 * Wed May 26 2010 David Woodhouse <dwmw2@infradead.org> 2.77-1
 - Update to 2.77 (fix Limelight and Akamai RTMP downloads).
 
