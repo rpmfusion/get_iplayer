@@ -1,2 +1,1 @@
-flvstreamer /usr/bin/rtmpdump
-rtmptvopts --swfVfy http://www.bbc.co.uk/emp/10player.swf
+# No options set by default now that rtmpdump/swfVfy is handled automatically
