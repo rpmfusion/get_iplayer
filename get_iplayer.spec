@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.77
-Release:	3%{?dist}
+Version:	2.78
+Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -51,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Fri May 28 2010 David Woodhouse <dwmw2@infradead.org> 2.78-1
+- Update to 2.78 (proper fix for Akamai).
+
 * Wed May 26 2010 David Woodhouse <dwmw2@infradead.org> 2.77-3
 - Add all necessary perl BuildRequires so we can generate man page
 
