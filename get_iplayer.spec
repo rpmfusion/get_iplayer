@@ -1,5 +1,5 @@
 Name:		get_iplayer
-Version:	2.79
+Version:	2.80
 Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
@@ -51,6 +51,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-1
+- Update to 2.80
+- Add 'packagemanager yum' to options file (#1270)
+
 * Sun Jan 09 2011 David Woodhouse <dwmw2@infradead.org> 2.79-1
 - Update to 2.79
 
