@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.80
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -18,6 +18,10 @@ BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=734244
+%filter_from_requires /perl(Programme.*)/d; /perl(Streamer)/d;
+%filter_setup
 
 BuildArch:	noarch
 
@@ -51,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-2
+- Remove superfluous perl requires
+
 * Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-1
 - Update to 2.80
 - Add 'packagemanager yum' to options file (#1270)
