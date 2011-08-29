@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.80
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -19,9 +19,11 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc
 
+%if 0%{?fedora}
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
 %filter_from_requires /perl(Programme.*)/d; /perl(Streamer)/d;
 %filter_setup
+%endif
 
 BuildArch:	noarch
 
@@ -55,6 +57,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-3
+- Make the requires filtering work in rpmfusion build system
+
 * Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-2
 - Remove superfluous perl requires
 
