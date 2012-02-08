@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.80
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -57,6 +57,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Wed Feb 08 2012 Nicolas Chauvet <kwizart@gmail.com> - 2.80-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Mon Aug 29 2011 David Woodhouse <dwmw2@infradead.org> 2.80-4
 - conditionalise %%filter_setup properly.
 
