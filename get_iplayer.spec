@@ -54,11 +54,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/get_iplayer
 %config(noreplace) %{_sysconfdir}/get_iplayer/options
 %doc LICENSE.txt 
-%doc README.txt
+%doc README.md
 
 %changelog
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-1
 - Update to 2.85.  Fixes bug #2862.
+- README.txt replaced by README.md.
 
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.80-8
 - Depend on package vlc-core (which contains cvlc), not vlc.  Fixes bug #2143.
