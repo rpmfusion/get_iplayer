@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.80
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -17,7 +17,7 @@ BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies) perl(HTTP::Headers)
 BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
-Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc
+Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
@@ -57,6 +57,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.80-8
+- Depend on package vlc-core (which contains cvlc), not vlc.  Fixes bug #2143.
+
 * Sun May 26 2013 Nicolas Chauvet <kwizart@gmail.com> - 2.80-7
 - Rebuilt for x264/FFmpeg
 
