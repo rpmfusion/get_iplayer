@@ -1,11 +1,11 @@
 Name:		get_iplayer
-Version:	2.80
-Release:	8%{?dist}
+Version:	2.85
+Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
 License:	GPLv3+
-URL:		http://github.com/jjl/get_iplayer
+URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
 Source0:	ftp://ftp.infradead.org/pub/get_iplayer/get_iplayer-%{version}.tar.gz
 Source1:	options
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -57,6 +57,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt
 
 %changelog
+* Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-1
+- Update to 2.85.  Fixes bug #2862.
+
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.80-8
 - Depend on package vlc-core (which contains cvlc), not vlc.  Fixes bug #2143.
 
