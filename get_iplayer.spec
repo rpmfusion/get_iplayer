@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.85
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -19,11 +19,30 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core
 
-%{?filter_setup:
-# https://bugzilla.redhat.com/show_bug.cgi?id=734244
-%filter_from_requires /perl(Programme.*)/d; /perl(Streamer)/d;
-%filter_setup
-}
+# Workaround for https://bugzilla.rpmfusion.org/show_bug.cgi?id=3068:
+Requires:	perl(base)
+Requires:	perl(Cwd)
+Requires:	perl(Encode)
+Requires:	perl(Env)
+Requires:	perl(Fcntl)
+Requires:	perl(File::Basename)
+Requires:	perl(File::Copy)
+Requires:	perl(File::Path)
+Requires:	perl(File::Spec)
+Requires:	perl(File::stat)
+Requires:	perl(Getopt::Long)
+Requires:	perl(HTML::Entities)
+Requires:	perl(HTTP::Cookies)
+Requires:	perl(HTTP::Headers)
+Requires:	perl(integer)
+Requires:	perl(IO::Seekable)
+Requires:	perl(IO::Socket)
+Requires:	perl(LWP::ConnCache)
+Requires:	perl(LWP::UserAgent)
+Requires:	perl(POSIX)
+Requires:	perl(strict)
+Requires:	perl(Time::Local)
+Requires:	perl(URI)
 
 BuildArch:	noarch
 
@@ -57,6 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 %changelog
+* Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-3
+- Manually list Requires.  Works around
+  https://bugzilla.redhat.com/show_bug.cgi?id=1051607 and fixes
+  https://bugzilla.rpmfusion.org/show_bug.cgi?id=3068.
+
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-2
 - README.txt replaced by README.md.
 
