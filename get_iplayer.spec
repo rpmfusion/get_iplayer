@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.85
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -9,6 +9,7 @@ URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
 Source0:	ftp://ftp.infradead.org/pub/get_iplayer/get_iplayer-%{version}.tar.gz
 Source1:	options
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildArch:	noarch
 
 BuildRequires:	sed 
 BuildRequires:	perl(Cwd) perl(Env) perl(Fcntl) perl(File::Copy) 
@@ -17,34 +18,8 @@ BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies) perl(HTTP::Headers)
 BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
+BuildRequires:  file-libs >= 5.14-14
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core
-
-# Workaround for https://bugzilla.rpmfusion.org/show_bug.cgi?id=3068:
-Requires:	perl(base)
-Requires:	perl(Cwd)
-Requires:	perl(Encode)
-Requires:	perl(Env)
-Requires:	perl(Fcntl)
-Requires:	perl(File::Basename)
-Requires:	perl(File::Copy)
-Requires:	perl(File::Path)
-Requires:	perl(File::Spec)
-Requires:	perl(File::stat)
-Requires:	perl(Getopt::Long)
-Requires:	perl(HTML::Entities)
-Requires:	perl(HTTP::Cookies)
-Requires:	perl(HTTP::Headers)
-Requires:	perl(integer)
-Requires:	perl(IO::Seekable)
-Requires:	perl(IO::Socket)
-Requires:	perl(LWP::ConnCache)
-Requires:	perl(LWP::UserAgent)
-Requires:	perl(POSIX)
-Requires:	perl(strict)
-Requires:	perl(Time::Local)
-Requires:	perl(URI)
-
-BuildArch:	noarch
 
 %description
 get_iplayer is a tool for listing, recording and streaming BBC iPlayer TV 
@@ -76,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 %changelog
+* Thu Jan 16 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-4
+- Remove workaround for RHBZ#1051607, fixed in file-libs-5.14-14.
+
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-3
 - Manually list Requires.  Works around
   https://bugzilla.redhat.com/show_bug.cgi?id=1051607 and fixes
