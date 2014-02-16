@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.85
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -19,7 +19,7 @@ BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
-Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core
+Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
 
 %description
 get_iplayer is a tool for listing, recording and streaming BBC iPlayer TV 
@@ -51,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 %changelog
+* Sun Feb 16 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-5
+- Depend on AtomicParsley (now packaged for Fedora 20).
+
 * Thu Jan 16 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-4
 - Remove workaround for RHBZ#1051607, fixed in file-libs-5.14-14.
 
