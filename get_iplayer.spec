@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.85
-Release:	5%{?dist}
+Release:	6%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -20,6 +20,12 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
+
+%{?filter_setup:
+# https://bugzilla.redhat.com/show_bug.cgi?id=734244
+%filter_from_requires /perl(Programme.*)/d; /perl(Streamer)/d;
+%filter_setup
+}
 
 %description
 get_iplayer is a tool for listing, recording and streaming BBC iPlayer TV 
@@ -51,6 +57,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 %changelog
+* Fri Feb 28 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-6
+- Restore dependency filtering, required again now that
+  https://bugzilla.redhat.com/show_bug.cgi?id=1051598 is fixed.  Fixes
+  bug #3181.
+
 * Sun Feb 16 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-5
 - Depend on AtomicParsley (now packaged for Fedora 20).
 
