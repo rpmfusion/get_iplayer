@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.85
-Release:	6%{?dist}
+Release:	7%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -20,6 +20,7 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
+Requires:       perl(XML::Simple)
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
@@ -56,7 +57,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE.txt 
 %doc README.md
 
+
 %changelog
+* Fri Feb 28 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-7
+- Functionality is improved if XML::Simple is installed, so add it as a
+  dependency.  Bug #3137.
+
 * Fri Feb 28 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-6
 - Restore dependency filtering, required again now that
   https://bugzilla.redhat.com/show_bug.cgi?id=1051598 is fixed.  Fixes
