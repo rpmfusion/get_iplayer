@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.85
-Release:	7%{?dist}
+Version:	2.86
+Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Apr 20 2014 Peter Oliver <rpm@mavit.org.uk> - 2.86-1
+- Update to 2.86.
+
 * Fri Feb 28 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-7
 - Functionality is improved if XML::Simple is installed, so add it as a
   dependency.  Bug #3137.
