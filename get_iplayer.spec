@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.85
-Release:	2%{?dist}
+Version:	2.86
+Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -9,6 +9,7 @@ URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
 Source0:	ftp://ftp.infradead.org/pub/get_iplayer/get_iplayer-%{version}.tar.gz
 Source1:	options
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildArch:	noarch
 
 BuildRequires:	sed 
 BuildRequires:	perl(Cwd) perl(Env) perl(Fcntl) perl(File::Copy) 
@@ -18,6 +19,7 @@ BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core
+Requires:       perl(XML::Simple)
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
@@ -57,6 +59,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 %changelog
+* Sat May  3 2014 Peter Oliver <rpm@mavit.org.uk> - 2.86-1
+- Update to 2.86.
+- Functionality is improved if XML::Simple is installed, so add it as a
+  dependency.  Bug #3137.
+
 * Sun Jan 12 2014 Peter Oliver <rpm@mavit.org.uk> - 2.85-2
 - README.txt replaced by README.md.
 
