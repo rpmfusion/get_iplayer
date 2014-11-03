@@ -1,5 +1,5 @@
 Name:		get_iplayer
-Version:	2.86
+Version:	2.90
 Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Nov  3 2014 David Woodhouse <dwmw2@infradead.org> - 2.90-1
+- Update to 2.90.
+
 * Sun Apr 20 2014 Peter Oliver <rpm@mavit.org.uk> - 2.86-1
 - Update to 2.86.
 
