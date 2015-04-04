@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.92
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -59,6 +59,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Apr  4 2015 Peter Oliver <rpm@mavit.org.uk> - 2.92-2
+- Set tag_longdesc option by default, since that's what Fedora's
+  AtomicParsley supports.  Fixes bug 3541.
+
 * Sat Apr  4 2015 Peter Oliver <rpm@mavit.org.uk> - 2.92-1
 - Update to 2.92.
 
