@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.95
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -8,6 +8,8 @@ License:	GPLv3+
 URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
 Source0:        https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	options
+Source2:        get_iplayer.desktop
+Source3:        get_iplayer.xml
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
@@ -24,7 +26,7 @@ Requires:       perl(XML::Simple) perl(XML::LibXML)
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
-%filter_from_requires /perl(Programme.*)/d; /perl(Streamer)/d;
+%filter_from_requires /perl(Programme.*)/d; /perl(Streamer.*)/d;
 %filter_setup
 }
 
@@ -43,6 +45,8 @@ rm -rf $RPM_BUILD_ROOT
 install -p -D -m0755 get_iplayer $RPM_BUILD_ROOT%{_bindir}/get_iplayer
 install -p -D -m0644 get_iplayer.1 $RPM_BUILD_ROOT%{_mandir}/man1/get_iplayer.1
 install -p -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/get_iplayer/options
+install -p -D -m0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mime/packages
+install -p -D -m0644 %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/applications dist/%{name}.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,11 +58,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/get_iplayer.1.*
 %dir %{_sysconfdir}/get_iplayer
 %config(noreplace) %{_sysconfdir}/get_iplayer/options
+%{_datadir}/appdata/%{name}.appdata.xml
+%{_datadir}/applications/%{name}.desktop
 %doc LICENSE.txt 
 %doc README.md
 
 
 %changelog
+* Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-2
+- Handle `bbc-ipd:` URLs.
+- Eliminate spurious module dependencies.
+
 * Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-1
 - Update to 2.95.
 - Remove deprecated options from default system options file.
