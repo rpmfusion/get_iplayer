@@ -1,12 +1,12 @@
 Name:		get_iplayer
-Version:	2.94
+Version:	2.95
 Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
 License:	GPLv3+
 URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
-Source0:	ftp://ftp.infradead.org/pub/get_iplayer/get_iplayer-%{version}.tar.gz
+Source0:        https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	options
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
@@ -20,7 +20,7 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
-Requires:       perl(XML::Simple)
+Requires:       perl(XML::Simple) perl(XML::LibXML)
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
@@ -59,6 +59,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-1
+- Update to 2.95.
+- Remove deprecated options from default system options file.
+- Add dependency on XML::LibXML.
+
 * Thu Jun  4 2015 David Woodhouse <dwmw2@infradead.org> - 2.94-1
 - Update to 2.94.
 
