@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.95
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -8,8 +8,8 @@ License:	GPLv3+
 URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
 Source0:        https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	options
-Source2:        get_iplayer.desktop
-Source3:        get_iplayer.xml
+Source2:        get_iplayer.xml
+Source3:        get_iplayer.desktop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
@@ -21,6 +21,7 @@ BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
+BuildRequires:  desktop-file-utils
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
 Requires:       perl(XML::Simple) perl(XML::LibXML)
 
@@ -45,8 +46,8 @@ rm -rf $RPM_BUILD_ROOT
 install -p -D -m0755 get_iplayer $RPM_BUILD_ROOT%{_bindir}/get_iplayer
 install -p -D -m0644 get_iplayer.1 $RPM_BUILD_ROOT%{_mandir}/man1/get_iplayer.1
 install -p -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/get_iplayer/options
-install -p -D -m0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mime/packages
-install -p -D -m0644 %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/applications dist/%{name}.desktop
+install -p -D -m0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mime/packages/%{name}.xml
+desktop-file-install --dir=%{buildroot}/%{_datadir}/applications %{SOURCE3}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,13 +59,33 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/get_iplayer.1.*
 %dir %{_sysconfdir}/get_iplayer
 %config(noreplace) %{_sysconfdir}/get_iplayer/options
-%{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/mime/packages/get_iplayer.xml
 %doc LICENSE.txt 
 %doc README.md
 
 
+%post
+/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
+/usr/bin/update-desktop-database &> /dev/null || :
+
+
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
+fi
+
+
+%posttrans
+/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
+
+
 %changelog
+* Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-3
+- Add missing scriptlets.
+- Fix typos.
+
 * Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-2
 - Handle `bbc-ipd:` URLs.
 - Eliminate spurious module dependencies.
