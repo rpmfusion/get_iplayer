@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.95
-Release:	3%{?dist}
+Version:	2.96
+Release:	1%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -82,6 +82,9 @@ fi
 
 
 %changelog
+* Sun Aug 28 2016 Peter Oliver <rpm@mavit.org.uk> - 2.96-1
+- New upstream release 2.96
+
 * Sun Jul 24 2016 Peter Oliver <rpm@mavit.org.uk> - 2.95-3
 - Add missing scriptlets.
 - Fix typos.
