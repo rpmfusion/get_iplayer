@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	2.96
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, Records and Streams BBC iPlayer TV and Radio programmes
 
 Group:		Applications/Internet
@@ -10,6 +10,7 @@ Source0:        https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.g
 Source1:	options
 Source2:        get_iplayer.xml
 Source3:        get_iplayer.desktop
+Source4:        %{name}.appdata.xml
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
@@ -22,6 +23,7 @@ BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
 BuildRequires:  file-libs >= 5.14-14
 BuildRequires:  desktop-file-utils
+BuildRequires:  libappstream-glib
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
 Requires:       perl(XML::Simple) perl(XML::LibXML)
 
@@ -47,7 +49,11 @@ install -p -D -m0755 get_iplayer $RPM_BUILD_ROOT%{_bindir}/get_iplayer
 install -p -D -m0644 get_iplayer.1 $RPM_BUILD_ROOT%{_mandir}/man1/get_iplayer.1
 install -p -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/get_iplayer/options
 install -p -D -m0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mime/packages/%{name}.xml
+install -p -D -m0644 %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/appdata/%{name}.appdata.xml
 desktop-file-install --dir=%{buildroot}/%{_datadir}/applications %{SOURCE3}
+
+%check
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -61,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/get_iplayer/options
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/mime/packages/get_iplayer.xml
+%{_datadir}/appdata/%{name}.appdata.xml
 %doc LICENSE.txt 
 %doc README.md
 
@@ -82,6 +89,9 @@ fi
 
 
 %changelog
+* Mon Aug 29 2016 Peter Oliver <rpm@mavit.org.uk> - 2.96-2
+- Include an AppData XML file for Gnome Software.
+
 * Sun Aug 28 2016 Peter Oliver <rpm@mavit.org.uk> - 2.96-1
 - New upstream release 2.96
 

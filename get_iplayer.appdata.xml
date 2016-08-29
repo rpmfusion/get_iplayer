@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Peter Oliver -->
+<component type="desktop">
+  <id>get_iplayer.desktop</id>
+  <project_license>GPL-3.0+</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>get_iplayer</name>
+  <summary>Download programmes from BBC iPlayer</summary>
+  <description>
+    <p>
+      get_iplayer allows you to download BBC television and radio
+      programmes for later viewing and listening.
+    </p>
+    <p>
+      With get_iplayer installed, click the "Download" links on the BBC
+      iPlayer website to download programmes to your computer, or use
+      the command line.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://mavit.fedorapeople.org/appdata/get_iplayer-terminal.png</image>
+      <caption>A television programme being downloaded</caption>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">http://www.infradead.org/get_iplayer/html/get_iplayer.html/</url>
+  <url type="bugtracker">https://github.com/get-iplayer/get_iplayer/issues</url>
+  <url type="help">https://github.com/get-iplayer/get_iplayer/wiki</url>
+  <update_contact>appdata@mavit.org.uk</update_contact>
+</component>
