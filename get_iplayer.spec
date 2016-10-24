@@ -1,29 +1,47 @@
 Name:		get_iplayer
 Version:	2.97
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
 License:	GPLv3+
 URL:		http://www.infradead.org/get_iplayer/html/get_iplayer.html
-Source0:        https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:	https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:	options
-Source2:        get_iplayer.xml
-Source3:        get_iplayer.desktop
+Source2:	get_iplayer.xml
+Source3:	get_iplayer.desktop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
-BuildRequires:	sed 
+BuildRequires:	perl
+BuildRequires:	perl-generators
+BuildRequires:	perl(base)
+BuildRequires:	perl(constant)
 BuildRequires:	perl(Cwd) perl(Env) perl(Fcntl) perl(File::Copy) 
 BuildRequires:	perl(File::Path) perl(File::stat) perl(Getopt::Long)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies) perl(HTTP::Headers)
 BuildRequires:	perl(IO::Seekable) perl(IO::Socket) perl(LWP::ConnCache)
 BuildRequires:	perl(LWP::UserAgent) perl(POSIX) perl(Time::Local) perl(URI)
 BuildRequires:	perl(HTML::Entities) perl(HTTP::Cookies)
-BuildRequires:  file-libs >= 5.14-14
-BuildRequires:  desktop-file-utils
+BuildRequires:	perl(Encode)
+BuildRequires:	perl(Encode::Locale)
+BuildRequires:	perl(File::Basename)
+BuildRequires:	perl(File::Spec)
+BuildRequires:	perl(integer)
+BuildRequires:	perl(List::Util)
+BuildRequires:	perl(open)
+BuildRequires:	perl(PerlIO::encoding)
+BuildRequires:	perl(Storable)
+BuildRequires:	perl(strict)
+BuildRequires:	perl(Text::ParseWords)
+BuildRequires:	perl(Unicode::Normalize)
+BuildRequires:	file-libs >= 5.14-14
+BuildRequires:	desktop-file-utils
+BuildRequires:	sed
 Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
-Requires:       perl(XML::Simple) perl(XML::LibXML)
+Requires:	perl(Encode::Locale)
+Requires:	perl(XML::Simple) perl(XML::LibXML)
+
 
 %{?filter_setup:
 # https://bugzilla.redhat.com/show_bug.cgi?id=734244
@@ -54,14 +72,17 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr(-,root,root,-)
 %{_bindir}/get_iplayer
 %{_mandir}/man1/get_iplayer.1.*
 %dir %{_sysconfdir}/get_iplayer
 %config(noreplace) %{_sysconfdir}/get_iplayer/options
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/mime/packages/get_iplayer.xml
-%doc LICENSE.txt 
+%if 0%{?_licensedir:1}
+%license LICENSE.txt
+%else
+%doc LICENSE.txt
+%endif
 %doc README.md
 
 
@@ -82,6 +103,14 @@ fi
 
 
 %changelog
+* Mon Oct 24 2016 Paul Howarth <paul@city-fan.org> - 2.97-2
+- BR: perl-generators
+  (https://fedoraproject.org/wiki/Changes/Build_Root_Without_Perl)
+- Add various other perl module dependencies
+- Resolve rpmlint warning about mixed use of spaces and tabs
+- Use %%license where available
+- Drop %%defattr, redundant since rpm 4.4
+
 * Thu Sep 29 2016 Peter Oliver <git@mavit.org.uk> - 2.97-1
 - New upstream release 2.97
 
