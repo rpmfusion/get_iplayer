@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.97
-Release:	2%{?dist}
+Version:	2.98
+Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -38,9 +38,11 @@ BuildRequires:	perl(Unicode::Normalize)
 BuildRequires:	file-libs >= 5.14-14
 BuildRequires:	desktop-file-utils
 BuildRequires:	sed
-Requires:	rtmpdump ffmpeg id3v2 lame mplayer vlc-core AtomicParsley
+Requires:	ffmpeg >= 3.0
+Requires:	rtmpdump id3v2 lame mplayer vlc-core AtomicParsley
 Requires:	perl(Encode::Locale)
 Requires:	perl(XML::Simple) perl(XML::LibXML)
+Requires:	perl(LWP::Protocol::https)
 
 
 %{?filter_setup:
@@ -50,8 +52,9 @@ Requires:	perl(XML::Simple) perl(XML::LibXML)
 }
 
 %description
-get_iplayer is a tool for listing, recording and streaming BBC iPlayer TV 
-programmes, and other programmes via 3rd-party plugins.
+get_iplayer is a tool for listing, recording and streaming BBC iPlayer
+television and radio programmes, and other programmes via 3rd-party
+plugins.
 
 %prep
 %setup -q
@@ -103,6 +106,9 @@ fi
 
 
 %changelog
+* Thu Feb  9 2017 Peter Oliver <rpm@mavit.org.uk> - 2.98-1
+- Update to version 2.98.
+
 * Mon Oct 24 2016 Paul Howarth <paul@city-fan.org> - 2.97-2
 - BR: perl-generators
   (https://fedoraproject.org/wiki/Changes/Build_Root_Without_Perl)
