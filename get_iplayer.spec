@@ -1,5 +1,5 @@
 Name:		get_iplayer
-Version:	2.98
+Version:	2.99
 Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
@@ -106,6 +106,9 @@ fi
 
 
 %changelog
+* Mon Feb 13 2017 Peter Oliver <rpm@mavit.org.uk> - 2.99-1
+- Update to version 2.99.
+
 * Thu Feb  9 2017 Peter Oliver <rpm@mavit.org.uk> - 2.98-1
 - Update to version 2.98.
 
