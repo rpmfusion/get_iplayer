@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	2.99
-Release:	2%{?dist}
+Version:	3.00
+Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -39,10 +39,12 @@ BuildRequires:	file-libs >= 5.14-14
 BuildRequires:	desktop-file-utils
 BuildRequires:	sed
 Requires:	ffmpeg >= 3.0
-Requires:	rtmpdump id3v2 lame mplayer vlc-core AtomicParsley
+Requires:	AtomicParsley
 Requires:	perl(Encode::Locale)
 Requires:	perl(XML::Simple) perl(XML::LibXML)
 Requires:	perl(LWP::Protocol::https)
+Requires:	perl(Mojolicious) >= 4.63
+Requires:	perl(JSON::PP)
 
 
 %{?filter_setup:
@@ -106,6 +108,10 @@ fi
 
 
 %changelog
+* Mon May  1 2017 Peter Oliver <rpm@mavit.org.uk> - 3.00-1
+- Update to version 3.00.
+- Drop unneeded dependencies.
+
 * Sun Mar 19 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 2.99-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
