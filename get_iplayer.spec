@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	3.01
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -13,8 +13,8 @@ Source3:	get_iplayer.desktop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
-BuildRequires:	perl
 BuildRequires:	perl-generators
+BuildRequires:	perl-interpreter
 BuildRequires:	perl(base)
 BuildRequires:	perl(constant)
 BuildRequires:	perl(Cwd) perl(Env) perl(Fcntl) perl(File::Copy) 
@@ -40,6 +40,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	sed
 Requires:	ffmpeg >= 3.0
 Requires:	AtomicParsley
+Requires:	perl-interpreter
 Requires:	perl(Encode::Locale)
 Requires:	perl(XML::Simple) perl(XML::LibXML)
 Requires:	perl(LWP::Protocol::https)
@@ -108,6 +109,11 @@ fi
 
 
 %changelog
+* Fri Jul 14 2017 Paul Howarth <paul@city-fan.org> - 3.01-2
+- Rebuild for Perl 5.26
+- BR: and R: perl-interpreter
+  (https://fedoraproject.org/wiki/Changes/perl_Package_to_Install_Core_Modules)
+
 * Mon May  8 2017 Peter Oliver <rpm@mavit.org.uk> - 3.01-1
 - Update to version 3.01.
 
