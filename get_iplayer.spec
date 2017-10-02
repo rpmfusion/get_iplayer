@@ -1,5 +1,5 @@
 Name:		get_iplayer
-Version:	3.02
+Version:	3.03
 Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
@@ -42,7 +42,7 @@ Requires:	ffmpeg >= 3.0
 Requires:	AtomicParsley
 Requires:	perl-interpreter
 Requires:	perl(Encode::Locale)
-Requires:	perl(XML::LibXML)
+Requires:	perl(XML::LibXML) >= 1.91
 Requires:	perl(LWP::Protocol::https)
 Requires:	perl(Mojolicious) >= 4.63
 Requires:	perl(JSON::PP)
@@ -109,6 +109,9 @@ fi
 
 
 %changelog
+* Mon Oct  2 2017 Peter Oliver <rpm@mavit.org.uk> - 3.03-1
+- Update to version 3.03.
+
 * Mon Aug 21 2017 Peter Oliver <rpm@mavit.org.uk> - 3.02-1
 - Update to version 3.02.
 
