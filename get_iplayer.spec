@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	3.12
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -109,6 +109,9 @@ fi
 
 
 %changelog
+* Thu Mar 01 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 3.12-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Mon Jan 15 2018 Peter Oliver <rpm@mavit.org.uk> - 3.12-1
 - Update to version 3.12.
 
