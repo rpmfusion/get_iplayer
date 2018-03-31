@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	3.13
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -10,7 +10,6 @@ Source0:	https://github.com/get-iplayer/%{name}/archive/v%{version}.tar.gz#/%{na
 Source1:	options
 Source2:	get_iplayer.xml
 Source3:	get_iplayer.desktop
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
 BuildRequires:	perl-generators
@@ -66,16 +65,26 @@ plugins.
 ./get_iplayer --manpage=get_iplayer.1 || :
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -p -D -m0755 get_iplayer $RPM_BUILD_ROOT%{_bindir}/get_iplayer
-install -p -D -m0644 get_iplayer.1 $RPM_BUILD_ROOT%{_mandir}/man1/get_iplayer.1
-install -p -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/get_iplayer/options
-install -p -D -m0644 %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mime/packages/%{name}.xml
+install -p -D -m0755 get_iplayer %{buildroot}%{_bindir}/get_iplayer
+install -p -D -m0644 get_iplayer.1 %{buildroot}%{_mandir}/man1/get_iplayer.1
+install -p -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/get_iplayer/options
+install -p -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/mime/packages/%{name}.xml
 desktop-file-install --dir=%{buildroot}/%{_datadir}/applications %{SOURCE3}
 
-%clean
-rm -rf $RPM_BUILD_ROOT
+%if (0%{?rhel} && 0%{?rhel <= 7})
+%post
+/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
+/usr/bin/update-desktop-database &> /dev/null || :
 
+%postun
+/usr/bin/update-desktop-database &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
+fi
+
+%posttrans
+/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
+%endif
 
 %files
 %{_bindir}/get_iplayer
@@ -92,23 +101,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md
 
 
-%post
-/bin/touch --no-create %{_datadir}/mime/packages &>/dev/null || :
-/usr/bin/update-desktop-database &> /dev/null || :
-
-
-%postun
-/usr/bin/update-desktop-database &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-  /usr/bin/update-mime-database %{_datadir}/mime &> /dev/null || :
-fi
-
-
-%posttrans
-/usr/bin/update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-
-
 %changelog
+* Sat Mar 31 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.13-2
+- Remove all scriplets for fedora
+- Fix inconsistent use of thge buildroot macro
+
 * Tue Mar 27 2018 Peter Oliver <rpm@mavit.org.uk> - 3.13-1
 - Update to version 3.13.
 
