@@ -104,7 +104,7 @@ fi
 %changelog
 * Sat Mar 31 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.13-2
 - Remove all scriplets for fedora
-- Fix inconsistent use of thge buildroot macro
+- Fix inconsistent use of the buildroot macro
 
 * Tue Mar 27 2018 Peter Oliver <rpm@mavit.org.uk> - 3.13-1
 - Update to version 3.13.
