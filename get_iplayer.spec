@@ -1,6 +1,6 @@
 Name:		get_iplayer
-Version:	3.13
-Release:	2%{?dist}
+Version:	3.14
+Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -102,6 +102,9 @@ fi
 
 
 %changelog
+* Wed Jun 20 2018 Peter Oliver <rpm@mavit.org.uk> - 3.14-1
+- Update to version 3.14.
+
 * Sat Mar 31 2018 Leigh Scott <leigh123linux@googlemail.com> - 3.13-2
 - Remove all scriplets for fedora
 - Fix inconsistent use of the buildroot macro
