@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	3.30
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -37,7 +37,7 @@ BuildRequires:	perl(Unicode::Normalize)
 BuildRequires:	file-libs >= 5.14-14
 BuildRequires:	desktop-file-utils
 BuildRequires:	sed
-Requires:	ffmpeg >= 3.0
+Requires:	/usr/bin/ffmpeg
 Requires:	AtomicParsley
 Requires:	perl-interpreter
 Requires:	perl(Encode::Locale)
@@ -102,6 +102,9 @@ fi
 
 
 %changelog
+* Sun Mar 19 2023 Peter Oliver <rpm@mavit.org.uk> - 3.30-3
+- Allow ffmpeg binary to be provided by ffmpeg-free package.
+
 * Sun Aug 07 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.30-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
