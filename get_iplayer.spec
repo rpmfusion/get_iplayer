@@ -1,6 +1,6 @@
 Name:		get_iplayer
 Version:	3.31
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
 Group:		Applications/Internet
@@ -37,7 +37,7 @@ BuildRequires:	perl(Unicode::Normalize)
 BuildRequires:	file-libs >= 5.14-14
 BuildRequires:	desktop-file-utils
 BuildRequires:	sed
-Requires:	ffmpeg >= 3.0
+Requires:	/usr/bin/ffmpeg
 Requires:	AtomicParsley
 Requires:	perl-interpreter
 Requires:	perl(Encode::Locale)
@@ -102,6 +102,9 @@ fi
 
 
 %changelog
+* Sun Mar 19 2023 Peter Oliver <rpm@mavit.org.uk> - 3.31-2
+- Allow ffmpeg binary to be provided by ffmpeg-free package.
+
 * Sun Jan 22 2023 Peter Oliver <rpm@mavit.org.uk> - 3.31-1
 - Update to version 3.31.
 
