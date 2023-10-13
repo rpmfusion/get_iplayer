@@ -1,5 +1,5 @@
 Name:		get_iplayer
-Version:	3.32
+Version:	3.33
 Release:	1%{?dist}
 Summary:	Lists, records and streams BBC iPlayer TV and radio programmes
 
@@ -102,6 +102,9 @@ fi
 
 
 %changelog
+* Fri Oct 13 2023 Peter Oliver <rpm@mavit.org.uk> - 3.33-1
+- Update to version 3.33.
+
 * Thu Oct 12 2023 Peter Oliver <rpm@mavit.org.uk> - 3.32-1
 - Update to version 3.32.
 
