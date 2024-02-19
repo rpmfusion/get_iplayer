@@ -105,6 +105,9 @@ fi
 * Mon Jan 15 2024 Peter Oliver <rpm@mavit.org.uk> - 3.35-1
 - Update to version 3.35.
 
+* Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 3.34-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
 * Sun Nov 19 2023 Peter Oliver <rpm@mavit.org.uk> - 3.34-1
 - Update to version 3.34.
 
